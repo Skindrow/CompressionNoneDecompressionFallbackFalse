@@ -6,6 +6,7 @@
     <title>Unity WebGL Player | UrbanClans</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -57,11 +58,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/23Gzip.loader.js";
+      var loaderUrl = buildUrl + "/24GzipTelegramDebug.loader.js";
       var config = {
-        dataUrl: buildUrl + "/23Gzip.data.gz",
-        frameworkUrl: buildUrl + "/23Gzip.framework.js.gz",
-        codeUrl: buildUrl + "/23Gzip.wasm.gz",
+        dataUrl: buildUrl + "/24GzipTelegramDebug.data.gz",
+        frameworkUrl: buildUrl + "/24GzipTelegramDebug.framework.js.gz",
+        codeUrl: buildUrl + "/24GzipTelegramDebug.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Urban Clans LTD",
         productName: "UrbanClans",
