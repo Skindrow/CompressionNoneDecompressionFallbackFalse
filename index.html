@@ -7,6 +7,14 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+      var unityInstance;
+
+      Module.onRuntimeInitialized = function() {
+        unityInstance = Module;
+        console.log("Unity WebGL initialized");
+      };
+    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -58,11 +66,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/40.loader.js";
+      var loaderUrl = buildUrl + "/41.loader.js";
       var config = {
-        dataUrl: buildUrl + "/40.data.gz",
-        frameworkUrl: buildUrl + "/40.framework.js.gz",
-        codeUrl: buildUrl + "/40.wasm.gz",
+        dataUrl: buildUrl + "/41.data.gz",
+        frameworkUrl: buildUrl + "/41.framework.js.gz",
+        codeUrl: buildUrl + "/41.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Urban Clans LTD",
         productName: "UrbanClans",
