@@ -7,31 +7,6 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-      var unityInstance;
-
-      Module.onRuntimeInitialized = function() {
-        unityInstance = Module;
-        console.log("Unity WebGL initialized");
-        GetInitData();
-      };
-
-      function GetInitData() {
-        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) {
-          var initData = window.Telegram.WebApp.initData;
-          var initDataString = typeof initData === 'object' ? JSON.stringify(initData) : String(initData);
-          if (typeof unityInstance !== 'undefined') {
-            unityInstance.SendMessage('InitDataFromURL', 'ReceiveInitData', initDataString);
-          } else {
-            console.error("unityInstance is not defined");
-          }
-          return initDataString;
-        } else {
-          console.log("initData is not available");
-          return null;
-        }
-      }
-    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -83,11 +58,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/42.loader.js";
+      var loaderUrl = buildUrl + "/43.loader.js";
       var config = {
-        dataUrl: buildUrl + "/42.data.gz",
-        frameworkUrl: buildUrl + "/42.framework.js.gz",
-        codeUrl: buildUrl + "/42.wasm.gz",
+        dataUrl: buildUrl + "/43.data.gz",
+        frameworkUrl: buildUrl + "/43.framework.js.gz",
+        codeUrl: buildUrl + "/43.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Urban Clans LTD",
         productName: "UrbanClans",
@@ -132,6 +107,7 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                window.unityInstance = unityInstance;
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
