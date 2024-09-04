@@ -13,7 +13,24 @@
       Module.onRuntimeInitialized = function() {
         unityInstance = Module;
         console.log("Unity WebGL initialized");
+        GetInitData();
       };
+
+      function GetInitData() {
+        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) {
+          var initData = window.Telegram.WebApp.initData;
+          var initDataString = typeof initData === 'object' ? JSON.stringify(initData) : String(initData);
+          if (typeof unityInstance !== 'undefined') {
+            unityInstance.SendMessage('InitDataFromURL', 'ReceiveInitData', initDataString);
+          } else {
+            console.error("unityInstance is not defined");
+          }
+          return initDataString;
+        } else {
+          console.log("initData is not available");
+          return null;
+        }
+      }
     </script>
   </head>
   <body>
@@ -66,11 +83,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/41.loader.js";
+      var loaderUrl = buildUrl + "/42.loader.js";
       var config = {
-        dataUrl: buildUrl + "/41.data.gz",
-        frameworkUrl: buildUrl + "/41.framework.js.gz",
-        codeUrl: buildUrl + "/41.wasm.gz",
+        dataUrl: buildUrl + "/42.data.gz",
+        frameworkUrl: buildUrl + "/42.framework.js.gz",
+        codeUrl: buildUrl + "/42.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Urban Clans LTD",
         productName: "UrbanClans",
